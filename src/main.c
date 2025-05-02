@@ -4,6 +4,9 @@
 #include <string.h>
 
 
+#include "../include/cDB_ERRORS/cDB_ERRORS.h"
+
+
 int32_t file_exists(const char *filename)
 {
     FILE *file = fopen(filename, "r");
@@ -41,7 +44,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
     if (DB_name == NULL || fields == NULL || count_fields == 0) 
     {
         fprintf(stderr, "0x10000001: invalid parameters\n");
-        return 0x10000001;
+        return create_cDB_ERR_INVALID_PARAMETERS;
     }
     
 
@@ -49,7 +52,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
     if (DB_name_len == 0 || DB_name_len >= MAX_DB_NAME_SIZE) 
     {
         fprintf(stderr, "0x10000002: the \"%s\" is too long or empty\n", DB_name);
-        return 0x10000002;
+        return create_cDB_ERR_IS_TOO_LONG_OR_EMPTY;
     }
 
     
@@ -57,14 +60,14 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
     if (snprintf(DB_name_cdb, sizeof(DB_name_cdb), "%s.cdb", DB_name) >= sizeof(DB_name_cdb)) 
     {
         fprintf(stderr, "0x10000004: database name too long\n");
-        return 0x10000004;
+        return create_cDB_ERR_DATABASE_NAME_TOO_LONG;
     }
 
     
     if (file_exists(DB_name_cdb)) 
     {
-        fprintf(stderr, "0x10000003: %s already exists\n", DB_name_cdb);
-        return 0x10000003;
+        fprintf(stderr, "0x10000003: %s DB already exists\n", DB_name_cdb);
+        return create_cDB_ERR_DB_ALREADY_EXISTS;
     }
 
     
@@ -72,7 +75,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
     if (DB_file == NULL) 
     {
         fprintf(stderr, "0x10000005: failed to create database file\n");
-        return 0x10000005;
+        return create_cDB_ERR_FAILED_TO_CREATE_DATABASE_FILE;
     }
 
 
