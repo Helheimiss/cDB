@@ -13,7 +13,7 @@ int32_t file_exists(const char *filename)
     if (file) 
     {
         fclose(file);
-        return 1;
+        return file_exists_ERR_FILE_IS_EXISTS;
     }
     return 0;
 }
