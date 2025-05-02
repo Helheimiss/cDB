@@ -1,5 +1,5 @@
-#ifndef CDB_ERRORS_H
-#define CDB_ERRORS_H
+#ifndef CDBW_ERR_H
+#define CDBW_ERR_H
 
 
 typedef enum
@@ -16,6 +16,5 @@ typedef enum
 {
     create_field_ERR_INVALID_PARAMETERS  = 0x20000001,
 } __create_field_err__;
-
 
 #endif

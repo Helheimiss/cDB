@@ -8,6 +8,8 @@
                 "-fdiagnostics-color=always",
                 "-Wall",
                 "-g3",
+                "../src/cDBR/cDBR.c",
+                "../src/cDBW/cDBW.c",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

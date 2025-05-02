@@ -3,6 +3,13 @@
         "stdint.h": "c",
         "stdint-gcc.h": "c",
         "cstdint": "c",
-        "random": "c"
+        "random": "c",
+        "cdb_errors.h": "c",
+        "cdbw_err.h": "c",
+        "cdbr_err.h": "c",
+        "cdb_types.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "cdbw.h": "c"
     }
 }
