@@ -12,7 +12,7 @@
                 "../src/cDBW/cDBW.c",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${workspaceFolder}/bin/Debug/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
