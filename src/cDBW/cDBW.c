@@ -8,7 +8,8 @@
 #include "../../include/cDB_types/cDB_types.h"
 
 
-int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT fields[], size_t count_fields) 
+// int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT fields[], size_t count_fields) 
+int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE]) 
 {
     if (DB_name == NULL) 
     {
@@ -49,10 +50,41 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
 
 
     fprintf(DB_file, "cdb metadata:\n");
-    fprintf(DB_file, "count_fields %zu\n", count_fields);
+    fprintf(DB_file, "count_fields %d\n", 0);
     fprintf(DB_file, "cdb fields:\n");
 
     
+    // for (size_t i = 0; i < count_fields; i++) 
+    // {
+    //     const size_t name_len = strlen(fields[i].d_name);
+    //     fwrite(&fields[i].d_type, MAX_DATA_TYPE_SIZE, 1, DB_file);
+    //     fwrite(fields[i].d_name, sizeof(char), name_len, DB_file);
+    // }
+    // fputc('\n', DB_file);
+    
+    fclose(DB_file);
+    return 0;
+}
+
+
+int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const DATA_STRUCT fields[], size_t count_fields)
+{
+    if (DB_name_cdb == NULL) 
+    {
+        fprintf(stderr, "0x10000001: invalid parameters\n");
+        return 1; // todo
+    }
+
+
+    FILE *DB_file = fopen(DB_name_cdb, "wb");
+    if (DB_file == NULL) 
+    {
+        fprintf(stderr, "0x10000005: failed to create database file\n");
+        return 2; // todo
+    }
+
+    // todo
+
     for (size_t i = 0; i < count_fields; i++) 
     {
         const size_t name_len = strlen(fields[i].d_name);
@@ -62,7 +94,6 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
     fputc('\n', DB_file);
     
     fclose(DB_file);
-    return 0;
 }
 
 
