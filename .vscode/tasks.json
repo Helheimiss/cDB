@@ -10,6 +10,7 @@
                 "-g3",
                 "../src/cDBR/cDBR.c",
                 "../src/cDBW/cDBW.c",
+                "../src/core/cDB.c",
                 "${file}",
                 "-o",
                 "${workspaceFolder}/bin/Debug/${fileBasenameNoExtension}"

@@ -10,6 +10,7 @@
         "cdb_types.h": "c",
         "string.h": "c",
         "stdio.h": "c",
-        "cdbw.h": "c"
+        "cdbw.h": "c",
+        "cdbr.h": "c"
     }
 }
