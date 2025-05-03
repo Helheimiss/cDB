@@ -32,9 +32,10 @@ int32_t main()
     test1[1] = create_field(SHORT, "test_short");
     test1[2] = create_field(FLOAT, "test_float");
 
-    int32_t a = create_cDB("test");
-    // int32_t a = create_cDB("test", NULL, 0);
-    printf("\nres: %d\n", a);
+    // int32_t a = create_cDB("test");
+    int32_t b = write_fields_to_cDB("test.cdb", test1, __GETF_SIZE_OF__(test1));
+    // printf("\nres1: %d\n", a);
+    printf("\nres2: %d\n", b);
 
     return 0;
 }

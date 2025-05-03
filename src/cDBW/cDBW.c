@@ -50,7 +50,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
 
 
     fprintf(DB_file, "cdb metadata:\n");
-    fprintf(DB_file, "count_fields %d\n", 0);
+    fprintf(DB_file, "count_fields %d\n", -1);
     fprintf(DB_file, "cdb fields:\n");
 
     
@@ -76,14 +76,36 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     }
 
 
-    FILE *DB_file = fopen(DB_name_cdb, "wb");
+    FILE *DB_file = fopen(DB_name_cdb, "r+b");
     if (DB_file == NULL) 
     {
-        fprintf(stderr, "0x10000005: failed to create database file\n");
+        fprintf(stderr, "0x10000005: failed to open\n");
         return 2; // todo
     }
 
+
     // todo
+    int count_fields_from_file = 0;
+    fscanf(DB_file, "cdb metadata:\n");
+    int check_count_fields = fscanf(DB_file, "count_fields %d\n", &count_fields_from_file);
+   
+    
+    if (check_count_fields != 1)
+    {
+        fprintf(stderr, "0x10000005: failed to read\n");        
+        return 3; // todo
+    }
+
+
+    fseek(DB_file, 0, SEEK_SET);
+    
+    fprintf(DB_file, "cdb metadata:\n");
+    fprintf(DB_file, "count_fields %d\n", count_fields);
+    fprintf(DB_file, "cdb fields:\n");
+
+
+
+    fseek(DB_file, -1, SEEK_END);
 
     for (size_t i = 0; i < count_fields; i++) 
     {
