@@ -5,9 +5,6 @@
 #include "../../include/cDBW/cDBW.h"
 #include "../../include/cDBW/cDBW_ERR.h"
 
-#include "../../include/cDBR/cDBR.h"
-#include "../../include/cDBR/cDBR_ERR.h"
-
 #include "../../include/cDB_types/cDB_types.h"
 
 
@@ -36,11 +33,11 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT field
     }
 
     
-    if (file_exists(DB_name_cdb)) 
-    {
-        fprintf(stderr, "0x10000003: %s DB already exists\n", DB_name_cdb);
-        return create_cDB_ERR_DB_ALREADY_EXISTS;
-    }
+    // if (file_exists(DB_name_cdb)) 
+    // {
+    //     fprintf(stderr, "0x10000003: %s DB already exists\n", DB_name_cdb);
+    //     return create_cDB_ERR_DB_ALREADY_EXISTS;
+    // }
 
     
     FILE *DB_file = fopen(DB_name_cdb, "wb");
