@@ -50,7 +50,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
 
 
     fprintf(DB_file, "cdb metadata:\n");
-    fprintf(DB_file, "count_fields %d\n", -1);
+    fprintf(DB_file, "count_fields %d\n", NONE_FIELDS);
     fprintf(DB_file, "cdb fields:\n");
 
     
@@ -71,30 +71,29 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
 {
     if (DB_name_cdb == NULL) 
     {
-        fprintf(stderr, "0x10000001: invalid parameters\n");
-        return 1; // todo
+        fprintf(stderr, "0x20000001: invalid parameters\n");
+        return write_fields_to_cDB_ERR_INVALID_PARAMETERS; // todo
     }
 
 
     FILE *DB_file = fopen(DB_name_cdb, "r+b");
     if (DB_file == NULL) 
     {
-        fprintf(stderr, "0x10000005: failed to open\n");
-        return 2; // todo
+        fprintf(stderr, "0x20000002: failed to open\n");
+        return write_fields_to_cDB_ERR_FAILED_TO_OPEN; // todo
     }
 
 
-    // todo
     fscanf(DB_file, "cdb metadata:\n");
     int count_fields_from_file = 0;
     int check_count_fields = fscanf(DB_file, "count_fields %d\n", &count_fields_from_file);
-    if (count_fields_from_file == -1) count_fields_from_file = 0;
+    if (count_fields_from_file == NONE_FIELDS) count_fields_from_file = 0;
     
     
     if (check_count_fields != 1)
     {
-        fprintf(stderr, "0x10000005: failed to read\n");        
-        return 3; // todo
+        fprintf(stderr, "0x20000003: failed to read\n");        
+        return write_fields_to_cDB_ERR_FAILED_TO_READ; // todo
     }
 
 
@@ -128,7 +127,7 @@ DATA_STRUCT create_field(DATA_TYPE d_type, char d_name[MAX_DATA_STRUCT_NAME])
     
     if (d_name_len == 0 || d_name_len >= MAX_DATA_STRUCT_NAME) 
     {
-        fprintf(stderr, "0x20000001: invalid parameters\n");
+        fprintf(stderr, "0x30000001: invalid parameters\n");
         return temp;
     }
 

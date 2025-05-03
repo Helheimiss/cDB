@@ -14,7 +14,15 @@ typedef enum
 
 typedef enum
 {
-    create_field_ERR_INVALID_PARAMETERS  = 0x20000001,
+    write_fields_to_cDB_ERR_INVALID_PARAMETERS = 0x20000001,
+    write_fields_to_cDB_ERR_FAILED_TO_OPEN = 0x20000002,
+    write_fields_to_cDB_ERR_FAILED_TO_READ = 0x20000003,
+} __write_fields_to_cDB_err__;
+
+
+typedef enum
+{
+    create_field_ERR_INVALID_PARAMETERS  = 0x30000001,
 } __create_field_err__;
 
 #endif

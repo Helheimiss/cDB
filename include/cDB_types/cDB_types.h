@@ -13,6 +13,9 @@
 #define MAX_DB_NAME_CDB_SIZE (MAX_DB_NAME_SIZE+5)
 
 
+#define NONE_FIELDS -1
+
+
 typedef enum
 {
     INT,
