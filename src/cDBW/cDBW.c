@@ -63,7 +63,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
     // fputc('\n', DB_file);
     
     fclose(DB_file);
-    return 0;
+    return 0x00000000;
 }
 
 
