@@ -85,10 +85,11 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
 
 
     // todo
-    int count_fields_from_file = 0;
     fscanf(DB_file, "cdb metadata:\n");
+    int count_fields_from_file = 0;
     int check_count_fields = fscanf(DB_file, "count_fields %d\n", &count_fields_from_file);
-   
+    if (count_fields_from_file == -1) count_fields_from_file = 0;
+    
     
     if (check_count_fields != 1)
     {
@@ -100,7 +101,7 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     fseek(DB_file, 0, SEEK_SET);
     
     fprintf(DB_file, "cdb metadata:\n");
-    fprintf(DB_file, "count_fields %d\n", count_fields);
+    fprintf(DB_file, "count_fields %d\n", (count_fields+count_fields_from_file));
     fprintf(DB_file, "cdb fields:\n");
 
 
