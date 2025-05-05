@@ -13,7 +13,7 @@ int32_t file_exists(const char *filename)
     if (file) 
     {
         fclose(file);
-        return file_exists_ERR_FILE_IS_EXISTS;
+        return 1;
     }
     return 0x00000000;
 }
@@ -24,7 +24,7 @@ int32_t get_count_fields(const char *DB_name_cdb)
     if (DB_name_cdb == NULL) 
     {
         fprintf(stderr, "0x20000001: invalid parameters\n");
-        return -get_count_fields_ERR_INVALID_PARAMETERS; // todo
+        return -2; // todo
     }
 
 
@@ -32,7 +32,7 @@ int32_t get_count_fields(const char *DB_name_cdb)
     if (DB_file == NULL) 
     {
         fprintf(stderr, "0x20000002: failed to open\n");
-        return -get_count_fields_ERR_FAILED_TO_OPEN; // todo
+        return -3; // todo
     }
 
 
@@ -44,7 +44,7 @@ int32_t get_count_fields(const char *DB_name_cdb)
     if (check_count_fields != 1)
     {
         fprintf(stderr, "0x10000005: failed to read\n");        
-        return -get_count_fields_ERR_FAILED_TO_READ; // todo
+        return -4; // todo
     }
 
     fclose(DB_file);

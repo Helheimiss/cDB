@@ -14,7 +14,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
     if (DB_name == NULL) 
     {
         fprintf(stderr, "0x10000001: invalid parameters\n");
-        return create_cDB_ERR_INVALID_PARAMETERS;
+        return 1;
     }
     
 
@@ -22,7 +22,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
     if (DB_name_len == 0 || DB_name_len >= MAX_DB_NAME_SIZE) 
     {
         fprintf(stderr, "0x10000002: the \"%s\" is too long or empty\n", DB_name);
-        return create_cDB_ERR_IS_TOO_LONG_OR_EMPTY;
+        return 2;
     }
 
     
@@ -30,7 +30,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
     if (snprintf(DB_name_cdb, sizeof(DB_name_cdb), "%s.cdb", DB_name) >= sizeof(DB_name_cdb)) 
     {
         fprintf(stderr, "0x10000004: database name too long\n");
-        return create_cDB_ERR_DATABASE_NAME_TOO_LONG;
+        return 3;
     }
 
     
@@ -45,7 +45,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
     if (DB_file == NULL) 
     {
         fprintf(stderr, "0x10000005: failed to create database file\n");
-        return create_cDB_ERR_FAILED_TO_CREATE_DATABASE_FILE;
+        return 4;
     }
 
 
@@ -72,7 +72,7 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     if (DB_name_cdb == NULL) 
     {
         fprintf(stderr, "0x20000001: invalid parameters\n");
-        return write_fields_to_cDB_ERR_INVALID_PARAMETERS; // todo
+        return 1; // todo
     }
 
 
@@ -80,7 +80,7 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     if (DB_file == NULL) 
     {
         fprintf(stderr, "0x20000002: failed to open\n");
-        return write_fields_to_cDB_ERR_FAILED_TO_OPEN; // todo
+        return 2; // todo
     }
 
 
@@ -93,7 +93,7 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     if (check_count_fields != 1)
     {
         fprintf(stderr, "0x20000003: failed to read\n");        
-        return write_fields_to_cDB_ERR_FAILED_TO_READ; // todo
+        return 3; // todo
     }
 
 
