@@ -8,7 +8,16 @@
 #include "../../include/cDB_types/cDB_types.h"
 
 
-// int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE], const DATA_STRUCT fields[], size_t count_fields) 
+/**
+ * @brief create cDB
+ * @param DB_name[MAX_DB_NAME_SIZE] db name "example"
+ * @return results code
+ * @retval 0 - succes
+ * @retval 1 - invalid parameters
+ * @retval 2 - the "DB_name" is too long or empty
+ * @retval 3 - database name too long
+ * @retval 4 - failed to create database file
+ */
 int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE]) 
 {
     if (DB_name == NULL) 
@@ -33,7 +42,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
         return 3;
     }
 
-    
+    // temp
     // if (file_exists(DB_name_cdb)) 
     // {
     //     fprintf(stderr, "0x10000003: %s DB already exists\n", DB_name_cdb);
@@ -53,7 +62,7 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
     fprintf(DB_file, "count_fields %d\n", NONE_FIELDS);
     fprintf(DB_file, "cdb fields:\n");
 
-    
+    // temp
     // for (size_t i = 0; i < count_fields; i++) 
     // {
     //     const size_t name_len = strlen(fields[i].d_name);
@@ -67,6 +76,15 @@ int32_t create_cDB(const char DB_name[MAX_DB_NAME_SIZE])
 }
 
 
+/**
+ * @brief write fields to cDB
+ * @param DB_name_cdb[MAX_DB_NAME_CDB_SIZE] db name "example.cdb"
+ * @return results code
+ * @retval 0 - succes
+ * @retval 1 - invalid parameters
+ * @retval 2 - failed to open
+ * @retval 3 - failed to read
+ */
 int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const DATA_STRUCT fields[], size_t count_fields)
 {
     if (DB_name_cdb == NULL) 
@@ -104,7 +122,6 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     fprintf(DB_file, "cdb fields:\n");
 
 
-
     fseek(DB_file, -1, SEEK_END);
 
     for (size_t i = 0; i < count_fields; i++) 
@@ -116,9 +133,17 @@ int32_t write_fields_to_cDB(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], const 
     fputc('\n', DB_file);
     
     fclose(DB_file);
+    return 0;
 }
 
 
+/**
+ * @brief create field
+ * @param DB_name_cdb[MAX_DB_NAME_CDB_SIZE] db name "example.cdb"
+ * @return DATA_STRUCT
+ * @retval DATA_STRUCT {0} - invalid parameters 
+ * @retval DATA_STRUCT {n, n} - succes
+ */
 DATA_STRUCT create_field(DATA_TYPE d_type, char d_name[MAX_DATA_STRUCT_NAME]) 
 {
     DATA_STRUCT temp = {};

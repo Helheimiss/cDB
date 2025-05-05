@@ -11,6 +11,8 @@
         "string.h": "c",
         "stdio.h": "c",
         "cdbw.h": "c",
-        "cdbr.h": "c"
+        "cdbr.h": "c",
+        "future": "c",
+        "system_error": "c"
     }
 }
