@@ -8,5 +8,6 @@
 
 int32_t file_exists(const char *filename);
 int32_t get_count_fields(const char *DB_name_cdb);
+int32_t this_is_cDB(const char *DB_name_cdb);
 
 #endif

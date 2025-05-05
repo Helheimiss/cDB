@@ -36,6 +36,8 @@ int32_t main()
     int32_t b = write_fields_to_cDB("test.cdb", test1, __GETF_SIZE_OF__(test1));
     // printf("\nres1: %d\n", a);
     printf("\nres2: %d\n", b);
+    int c = this_is_cDB("test.cdb");
+    printf("\nres3: %d\n", c);
 
     return 0;
 }
