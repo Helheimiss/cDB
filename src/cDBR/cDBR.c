@@ -6,7 +6,12 @@
 #include "../../include/cDBR/cDBR_ERR.h"
 #include "../../include/cDB_types/cDB_types.h"
 
-
+/**
+ * @brief file exists?
+ * @return results code
+ * @retval 1 - file exists
+ * @retval 1 - file does not exist
+ */
 int32_t file_exists(const char *filename)
 {
     FILE *file = fopen(filename, "r");
@@ -19,6 +24,14 @@ int32_t file_exists(const char *filename)
 }
 
 
+/**
+ * @brief get count fields
+ * @return results code
+ * @retval -2 - invalid parameters
+ * @retval -3 - failed to open
+ * @retval -4 - failed to read
+ * @retval n count fields
+ */
 int32_t get_count_fields(const char *DB_name_cdb)
 {
     if (DB_name_cdb == NULL) 
@@ -55,12 +68,12 @@ int32_t get_count_fields(const char *DB_name_cdb)
  * @brief this is cdb?
  * @param DB_name_cdb "name.cdb"
  * @return results code
- * @retval 0 - this is cdb;
- * @retval 1 - the DB_name_cdb does not end in .cdb; 
- * @retval 2 - the DB_name_cdb does not end in .cdb; 
- * @retval 3 - invalid parameters; 
- * @retval 4 - failed to open; 
- * @retval 5 - this is not cdb;
+ * @retval 0 - this is cdb
+ * @retval 1 - the DB_name_cdb does not end in .cdb
+ * @retval 2 - the DB_name_cdb does not end in .cdb
+ * @retval 3 - invalid parameters
+ * @retval 4 - failed to open
+ * @retval 5 - this is not cdb
  */
 int32_t this_is_cDB(const char *DB_name_cdb)
 {
