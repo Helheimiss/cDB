@@ -164,3 +164,21 @@ DATA_STRUCT create_field(DATA_TYPE d_type, char d_name[MAX_DATA_STRUCT_NAME])
 
     return temp;
 }
+
+
+int32_t write_a_new_to_field(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE])
+{
+    // todo
+
+
+    return 0;
+}
+
+
+int32_t write_the_value_to_field(const char DB_name_cdb[MAX_DB_NAME_CDB_SIZE], DATA_VALUE d_value)
+{
+    // todo
+
+
+    return 0;
+}

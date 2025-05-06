@@ -31,4 +31,12 @@ typedef struct
 } DATA_STRUCT;
 
 
+typedef struct
+{
+    char d_name[MAX_DATA_STRUCT_NAME];
+    void *value;
+} DATA_VALUE;
+
+
+
 #endif
